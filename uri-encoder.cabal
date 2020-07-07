@@ -34,3 +34,19 @@ test-suite tests
                     quickcheck-instances >= 0.3 && < 0.4
   main-is:          QuickTests.hs
   type:             exitcode-stdio-1.0
+
+benchmark bench
+  build-depends:    base,
+                    bytestring >=0.10 && <0.11,
+                    clock,
+                    deepseq,
+                    formatting >= 6.1.0,
+                    uri-encoder,
+                    QuickCheck,
+                    quickcheck-instances >=0.3 && <0.4,
+                    uri-encode
+  default-language: Haskell2010
+  ghc-options:      -O2
+  hs-source-dirs:   benchmarks
+  main-is:          clock.hs
+  type:             exitcode-stdio-1.0
