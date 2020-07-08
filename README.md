@@ -1,6 +1,6 @@
 # URI.Encoder
 
-URI.Encoder aims to be a fast uri component encoder/decoder.  It encodes any `word8` not specified as unreserved in (RFC3986)[https://tools.ietf.org/html/rfc3986#section-2.2]
+URI.Encoder aims to be a fast uri component encoder/decoder.  It encodes any `word8` not specified as unreserved in [RFC3986](https://tools.ietf.org/html/rfc3986#section-2.2)
 
 This module assumes you are feeding it a valid escape sequence in the decoder.
 
@@ -17,7 +17,7 @@ This module assumes you are feeding it a valid escape sequence in the decoder.
 
 # Benchmark
 
-This is mostly an exercise inspired by (dnmfarrell)[https://github.com/dnmfarrell/Percent-Encoder]
+This is mostly an exercise inspired by [dnmfarrell](https://github.com/dnmfarrell/Percent-Encoder)
 
 ```
 benchmarking ENCODE/Network.URI
