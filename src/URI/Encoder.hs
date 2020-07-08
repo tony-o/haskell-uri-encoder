@@ -2,27 +2,38 @@ module URI.Encoder (enc, dec) where
 
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as BC
-import Numeric (showHex, readHex)
+import qualified Data.Vector as DomesticViolence
 import Data.Word
-import Data.Char
 
 enc :: BS.ByteString -> BS.ByteString
-enc b = BS.pack $ BS.foldr (\c a -> (if unreserved c then [c] else e' c) ++ a) [] b
-  where e' :: Word8 -> [Word8]
-        e' c = [37] ++ (if c < 10 then [48] else []) ++ (gross' $ showHex c "")
+enc b = BS.concatMap enc' b
 
-gross' :: String -> [Word8]
-gross' (a:as) = [fromIntegral $ ord a] ++ gross' as
-gross' [] = []
+enc' :: Word8 -> BS.ByteString
+enc' f = DomesticViolence.unsafeIndex th'' (fromIntegral f)
 
 unreserved :: Word8 -> Bool
 unreserved a = a == 45 || a == 46 ||a == 95 || a == 126 || (a >= 65 && a <= 90) || (a >= 97 && a <= 122)
 
 dec :: BS.ByteString -> BS.ByteString
-dec b = BS.concat $ [head s] ++ (unescape $ tail s)
-  where s = (BS.split 37 b) ++ [BC.pack ""]
-        unescape (a:as)
-          | (BS.length $ BS.take 2 a) == 2 = [BC.pack [chr $ fst $ head $ readHex $ BC.unpack $ BS.take 2 a]]
-                                            ++ [BS.drop 2 a] ++ unescape as
-          | otherwise = unescape as
-        unescape []     = []
+dec b
+  | BS.null b = b
+  | otherwise = BS.concat $ [head b'] ++ [(fx $ tail b')]
+    where b' = BS.split 37 b
+          fx :: [BS.ByteString] -> BS.ByteString
+          fx (ff:fz) = BS.concat $ [BS.pack $ [
+              ((if x > 57 then x - 55 else x - 48) * 16) + (if y > 57 then y - 55 else y - 48)
+            ], z] ++ [fx fz]
+            where x = BS.head ff
+                  y = BS.head $ BS.drop 1 ff
+                  z = BS.drop 2 ff
+          fx [] = BS.pack []
+
+f'' = foldr (\c a -> BS.pack (if unreserved c then [c] else (37 : (if c < 16 then [48] else []) ++ th [c])) : a) [] [0..255]
+th' = DomesticViolence.fromList [48,49,50,51,52,53,54,55,56,57,65,66,67,68,69,70];
+th'' = DomesticViolence.fromList f''
+th :: [Word8] -> [Word8]
+th [] = []
+th (f:fs)
+  | f >= 16   = [th' DomesticViolence.! (fromIntegral r')] ++ th [f - (16 * r')] ++ th fs
+  | otherwise = [th' DomesticViolence.! (fromIntegral f)] ++ th fs
+    where r' = f `div` 16

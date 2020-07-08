@@ -1,0 +1,41 @@
+Build profile: -w ghc-8.8.3 -O1
+In order, the following will be built (use -v for more details):
+ - uri-encoder-0.1.0.1 (lib) (file src/URI/Encoder.hs changed)
+ - uri-encoder-0.1.0.1 (bench:bench) (dependency rebuilt)
+Preprocessing library for uri-encoder-0.1.0.1..
+Building library for uri-encoder-0.1.0.1..
+[1 of 1] Compiling URI.Encoder      ( src/URI/Encoder.hs, /Users/tonyo/projects/haskell/URI-Encoder/dist-newstyle/build/x86_64-osx/ghc-8.8.3/uri-encoder-0.1.0.1/build/URI/Encoder.o )
+Preprocessing benchmark 'bench' for uri-encoder-0.1.0.1..
+Building benchmark 'bench' for uri-encoder-0.1.0.1..
+[1 of 1] Compiling Main             ( benchmarks/criterion.hs, /Users/tonyo/projects/haskell/URI-Encoder/dist-newstyle/build/x86_64-osx/ghc-8.8.3/uri-encoder-0.1.0.1/b/bench/build/bench/bench-tmp/Main.o ) [URI.Encoder changed]
+Linking /Users/tonyo/projects/haskell/URI-Encoder/dist-newstyle/build/x86_64-osx/ghc-8.8.3/uri-encoder-0.1.0.1/b/bench/build/bench/bench ...
+Running 1 benchmarks...
+Benchmark bench: RUNNING...
+benchmarking URI.Encoder/encode
+time                 10.50 μs   (10.44 μs .. 10.55 μs)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 10.51 μs   (10.47 μs .. 10.56 μs)
+std dev              156.5 ns   (120.2 ns .. 199.8 ns)
+variance introduced by outliers: 12% (moderately inflated)
+
+benchmarking URI.Encoder/decode
+time                 1.689 μs   (1.683 μs .. 1.694 μs)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 1.686 μs   (1.681 μs .. 1.692 μs)
+std dev              17.63 ns   (14.42 ns .. 21.50 ns)
+
+benchmarking Network.URI/escapeURIString
+time                 1.678 μs   (1.665 μs .. 1.695 μs)
+                     0.999 R²   (0.999 R² .. 1.000 R²)
+mean                 1.679 μs   (1.665 μs .. 1.694 μs)
+std dev              46.23 ns   (35.63 ns .. 59.95 ns)
+variance introduced by outliers: 36% (moderately inflated)
+
+benchmarking Network.URI/unEscapeString
+time                 512.2 ns   (509.8 ns .. 514.8 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 512.6 ns   (510.7 ns .. 515.4 ns)
+std dev              7.880 ns   (5.798 ns .. 11.48 ns)
+variance introduced by outliers: 16% (moderately inflated)
+
+Benchmark bench: FINISH

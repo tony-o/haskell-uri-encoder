@@ -1,0 +1,36 @@
+Build profile: -w ghc-8.8.3 -O1
+In order, the following will be built (use -v for more details):
+ - uri-encoder-0.1.0.1 (bench:bench) (first run)
+Preprocessing benchmark 'bench' for uri-encoder-0.1.0.1..
+Building benchmark 'bench' for uri-encoder-0.1.0.1..
+Running 1 benchmarks...
+Benchmark bench: RUNNING...
+benchmarking URI.Encoder/encode
+time                 1.559 μs   (1.553 μs .. 1.566 μs)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 1.565 μs   (1.556 μs .. 1.584 μs)
+std dev              43.93 ns   (28.48 ns .. 75.08 ns)
+variance introduced by outliers: 37% (moderately inflated)
+
+benchmarking URI.Encoder/decode
+time                 1.682 μs   (1.671 μs .. 1.696 μs)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 1.681 μs   (1.672 μs .. 1.697 μs)
+std dev              38.69 ns   (26.28 ns .. 62.66 ns)
+variance introduced by outliers: 28% (moderately inflated)
+
+benchmarking Network.URI/escapeURIString
+time                 1.710 μs   (1.705 μs .. 1.715 μs)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 1.713 μs   (1.707 μs .. 1.722 μs)
+std dev              25.13 ns   (17.85 ns .. 35.64 ns)
+variance introduced by outliers: 14% (moderately inflated)
+
+benchmarking Network.URI/unEscapeString
+time                 539.1 ns   (534.7 ns .. 544.5 ns)
+                     0.998 R²   (0.996 R² .. 0.999 R²)
+mean                 539.9 ns   (530.8 ns .. 556.4 ns)
+std dev              38.65 ns   (24.67 ns .. 60.53 ns)
+variance introduced by outliers: 81% (severely inflated)
+
+Benchmark bench: FINISH

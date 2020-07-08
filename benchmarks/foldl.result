@@ -1,0 +1,42 @@
+Build profile: -w ghc-8.8.3 -O1
+In order, the following will be built (use -v for more details):
+ - uri-encoder-0.1.0.1 (lib) (file src/URI/Encoder.hs changed)
+ - uri-encoder-0.1.0.1 (bench:bench) (dependency rebuilt)
+Preprocessing library for uri-encoder-0.1.0.1..
+Building library for uri-encoder-0.1.0.1..
+[1 of 1] Compiling URI.Encoder      ( src/URI/Encoder.hs, /Users/tonyo/projects/haskell/URI-Encoder/dist-newstyle/build/x86_64-osx/ghc-8.8.3/uri-encoder-0.1.0.1/build/URI/Encoder.o )
+Preprocessing benchmark 'bench' for uri-encoder-0.1.0.1..
+Building benchmark 'bench' for uri-encoder-0.1.0.1..
+[1 of 1] Compiling Main             ( benchmarks/criterion.hs, /Users/tonyo/projects/haskell/URI-Encoder/dist-newstyle/build/x86_64-osx/ghc-8.8.3/uri-encoder-0.1.0.1/b/bench/build/bench/bench-tmp/Main.o ) [URI.Encoder changed]
+Linking /Users/tonyo/projects/haskell/URI-Encoder/dist-newstyle/build/x86_64-osx/ghc-8.8.3/uri-encoder-0.1.0.1/b/bench/build/bench/bench ...
+Running 1 benchmarks...
+Benchmark bench: RUNNING...
+benchmarking URI.Encoder/encode
+time                 10.43 μs   (10.39 μs .. 10.49 μs)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 10.43 μs   (10.38 μs .. 10.50 μs)
+std dev              201.0 ns   (144.1 ns .. 273.6 ns)
+variance introduced by outliers: 18% (moderately inflated)
+
+benchmarking URI.Encoder/decode
+time                 1.678 μs   (1.668 μs .. 1.691 μs)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 1.674 μs   (1.668 μs .. 1.684 μs)
+std dev              27.11 ns   (19.29 ns .. 35.79 ns)
+variance introduced by outliers: 16% (moderately inflated)
+
+benchmarking Network.URI/escapeURIString
+time                 1.660 μs   (1.651 μs .. 1.674 μs)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 1.657 μs   (1.650 μs .. 1.673 μs)
+std dev              34.91 ns   (19.92 ns .. 57.57 ns)
+variance introduced by outliers: 25% (moderately inflated)
+
+benchmarking Network.URI/unEscapeString
+time                 532.4 ns   (520.4 ns .. 543.4 ns)
+                     0.998 R²   (0.997 R² .. 0.999 R²)
+mean                 519.3 ns   (515.5 ns .. 524.7 ns)
+std dev              15.32 ns   (11.29 ns .. 22.77 ns)
+variance introduced by outliers: 42% (moderately inflated)
+
+Benchmark bench: FINISH
