@@ -7,13 +7,16 @@ import Data.Word
 import Data.Char
 
 enc :: BS.ByteString -> BS.ByteString
-enc b = BS.concatMap escape b
-  where escape a
-          | unreserved a = BS.pack [a]
-          | otherwise    = BS.concat [(BS.pack $ [fromIntegral 37]), BC.pack $ (\x -> replicate (2 - length x) '0' ++ x) $ showHex a ""]
+enc b = BS.pack $ BS.foldr (\c a -> (if unreserved c then [c] else e' c) ++ a) [] b
+  where e' :: Word8 -> [Word8]
+        e' c = [37] ++ (if c < 10 then [48] else []) ++ (gross' $ showHex c "")
+
+gross' :: String -> [Word8]
+gross' (a:as) = [fromIntegral $ ord a] ++ gross' as
+gross' [] = []
 
 unreserved :: Word8 -> Bool
-unreserved a = a == 45 || a == 46 || a == 95 || a == 126 || (a >= 65 && a <= 90) || (a >= 97 && a <= 122)
+unreserved a = a == 45 || a == 46 ||a == 95 || a == 126 || (a >= 65 && a <= 90) || (a >= 97 && a <= 122)
 
 dec :: BS.ByteString -> BS.ByteString
 dec b = BS.concat $ [head s] ++ (unescape $ tail s)
