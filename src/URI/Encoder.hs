@@ -21,10 +21,12 @@ dec b
     where b' = BS.split 37 b
           fx :: [BS.ByteString] -> BS.ByteString
           fx (ff:fz) = BS.concat $ [BS.pack $ [
-              ((if x > 57 then x - 55 else x - 48) * 16) + (if y > 57 then y - 55 else y - 48)
+              (x' * 16) + y'
             ], z] ++ [fx fz]
             where x = BS.head ff
                   y = BS.head $ BS.drop 1 ff
+                  x' = if x > 57 then (if x > 70 then x - 87 else x - 55) else x - 48
+                  y' = if y > 57 then (if y > 70 then y - 87 else y - 55) else y - 48
                   z = BS.drop 2 ff
           fx [] = BS.pack []
 
