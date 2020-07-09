@@ -2,14 +2,14 @@ module URI.Encoder (enc, dec) where
 
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as BC
-import qualified Data.Vector as DomesticViolence
+import qualified Data.Vector as DV
 import Data.Word
 
 enc :: BS.ByteString -> BS.ByteString
 enc b = BS.concatMap enc' b
 
 enc' :: Word8 -> BS.ByteString
-enc' f = DomesticViolence.unsafeIndex th'' (fromIntegral f)
+enc' f = DV.unsafeIndex th'' (fromIntegral f)
 
 unreserved :: Word8 -> Bool
 unreserved a = a == 45 || a == 46 ||a == 95 || a == 126 || (a >= 65 && a <= 90) || (a >= 97 && a <= 122)
@@ -31,11 +31,11 @@ dec b
           fx [] = BS.pack []
 
 f'' = foldr (\c a -> BS.pack (if unreserved c then [c] else (37 : (if c < 16 then [48] else []) ++ th [c])) : a) [] [0..255]
-th' = DomesticViolence.fromList [48,49,50,51,52,53,54,55,56,57,65,66,67,68,69,70];
-th'' = DomesticViolence.fromList f''
+th' = DV.fromList [48,49,50,51,52,53,54,55,56,57,65,66,67,68,69,70];
+th'' = DV.fromList f''
 th :: [Word8] -> [Word8]
 th [] = []
 th (f:fs)
-  | f >= 16   = [th' DomesticViolence.! (fromIntegral r')] ++ th [f - (16 * r')] ++ th fs
-  | otherwise = [th' DomesticViolence.! (fromIntegral f)] ++ th fs
+  | f >= 16   = [th' DV.! (fromIntegral r')] ++ th [f - (16 * r')] ++ th fs
+  | otherwise = [th' DV.! (fromIntegral f)] ++ th fs
     where r' = f `div` 16
