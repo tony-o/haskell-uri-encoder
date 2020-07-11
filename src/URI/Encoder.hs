@@ -1,9 +1,13 @@
+-- | functions for uri encoding/decoding ByteStrings
+
 module URI.Encoder (enc, dec) where
 
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.Vector as DV
 import Data.Word
+
+-- | enc - uri encodes a bytestring
 
 enc :: BS.ByteString -> BS.ByteString
 enc b = BS.concatMap enc' b
@@ -13,6 +17,8 @@ enc' f = DV.unsafeIndex th'' (fromIntegral f)
 
 unreserved :: Word8 -> Bool
 unreserved a = a == 45 || a == 46 ||a == 95 || a == 126 || (a >= 65 && a <= 90) || (a >= 97 && a <= 122)
+
+-- | dec - uri decodes a bytestring
 
 dec :: BS.ByteString -> BS.ByteString
 dec b

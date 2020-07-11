@@ -48,3 +48,7 @@ mean                 434.7 ns   (432.0 ns .. 438.4 ns)
 std dev              10.63 ns   (8.417 ns .. 13.68 ns)
 variance introduced by outliers: 33% (moderately inflated)
 ```
+
+# Build Status
+
+[![Build Status](https://travis-ci.org/tony-o/haskell-uri-encoder.svg?branch=master)](https://travis-ci.org/tony-o/haskell-uri-encoder)
