@@ -150,7 +150,7 @@ before_install:
   - CABAL="$CABAL -vnormal+nowrap"
   - set -o pipefail
   - TEST=--enable-tests
-  - BENCH=--enable-benchmarks
+  - BENCH='' # --enable-benchmarks
   - HEADHACKAGE=false
   - rm -f $CABALHOME/config
   - |
